@@ -14,12 +14,16 @@ class EntryFormState extends State<EntryForm> {
   EntryFormState(this.item);
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  TextEditingController kodeController = TextEditingController(); //menambah controller kode
+  TextEditingController stockController = TextEditingController(); //menambah stock controller
   @override
   Widget build(BuildContext context) {
 //kondisi
     if (item != null) {
       nameController.text = item.name;
       priceController.text = item.price.toString();
+      kodeController.text = item.kode; //menambah kondisi kode
+      stockController.text = item.stock.toString(); //menambah kondisi stock
     }
 //rubah
     return Scaffold(
@@ -31,6 +35,23 @@ class EntryFormState extends State<EntryForm> {
           padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
           child: ListView(
             children: <Widget>[
+//kode
+              Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: TextField(
+                  controller: kodeController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Kode Barang',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+//
+                  },
+                ),
+              ),
 // nama
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
@@ -65,12 +86,29 @@ class EntryFormState extends State<EntryForm> {
                   },
                 ),
               ),
-// tombol button
+//stock
+              Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: TextField(
+                  controller: stockController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Stock Barang',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+//
+                  },
+                ),
+              ),
+            // tombol button
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: Row(
                   children: <Widget>[
-// tombol simpan
+                // tombol simpan
                     Expanded(
                       child: RaisedButton(
                         color: Theme.of(context).primaryColorDark,
@@ -81,15 +119,20 @@ class EntryFormState extends State<EntryForm> {
                         ),
                         onPressed: () {
                           if (item == null) {
-// tambah data
-                            item = Item(nameController.text,
-                                int.parse(priceController.text));
+                    // tambah data
+                            item = Item(
+                                nameController.text,
+                                kodeController.text,
+                                int.parse(priceController.text),
+                                int.parse(stockController.text));
                           } else {
 // ubah data
                             item.name = nameController.text;
+                            item.kode = kodeController.text;
                             item.price = int.parse(priceController.text);
+                            item.stock = int.parse(stockController.text);
                           }
-// kembali ke layar sebelumnya dengan membawa objek item
+                          // kembali ke layar sebelumnya dengan membawa objek item
                           Navigator.pop(context, item);
                         },
                       ),
