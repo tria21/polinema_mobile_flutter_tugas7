@@ -79,13 +79,17 @@ class HomeState extends State<Home> {
             trailing: GestureDetector(
               child: Icon(Icons.delete),
               onTap: () async {
-//TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+              //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+                dbHelper.delete(this.itemList[index].id);
+                updateListView();
               },
             ),
             onTap: () async {
               var item =
                   await navigateToEntryForm(context, this.itemList[index]);
-//TODO 4 Panggil Fungsi untuk Edit data
+             //TODO 4 Panggil Fungsi untuk Edit data
+                dbHelper.update(item);
+                updateListView();
             },
           ),
         );
