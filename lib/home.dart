@@ -36,7 +36,7 @@ class HomeState extends State<Home> {
               onPressed: () async {
                 var item = await navigateToEntryForm(context, null);
                 if (item != null) {
-//TODO 2 Panggil Fungsi untuk Insert ke DB
+                  //TODO 2 Panggil Fungsi untuk Insert ke DB
                   int result = await dbHelper.insert(item);
                   if (result > 0) {
                     updateListView();
@@ -71,25 +71,59 @@ class HomeState extends State<Home> {
               backgroundColor: Colors.red,
               child: Icon(Icons.ad_units),
             ),
-            title: Text(
-              this.itemList[index].name,
-              style: textStyle,
+            title: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Text(
+                    this.itemList[index].kode,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.grey[400]),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    this.itemList[index].name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            subtitle: Text(this.itemList[index].price.toString()),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text(
+                    "Rp " + this.itemList[index].price.toString(),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ],
+            ),
             trailing: GestureDetector(
               child: Icon(Icons.delete),
               onTap: () async {
-              //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
-                dbHelper.delete(this.itemList[index].id);
-                updateListView();
+                //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+                int result = await dbHelper.delete(this.itemList[index].id);
+                if (result > 0) {
+                  updateListView();
+                }
               },
             ),
             onTap: () async {
               var item =
                   await navigateToEntryForm(context, this.itemList[index]);
-             //TODO 4 Panggil Fungsi untuk Edit data
-                dbHelper.update(item);
+              //TODO 4 Panggil Fungsi untuk Edit data
+              int result = await dbHelper.update(item);
+              if (result > 0) {
                 updateListView();
+              }
             },
           ),
         );

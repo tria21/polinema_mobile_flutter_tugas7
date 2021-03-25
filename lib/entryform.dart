@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'item.dart';
+import 'home.dart';
 
 class EntryForm extends StatefulWidget {
   final Item item;
@@ -29,7 +30,15 @@ class EntryFormState extends State<EntryForm> {
     return Scaffold(
         appBar: AppBar(
           title: item == null ? Text('Tambah') : Text('Ubah'),
-          leading: Icon(Icons.keyboard_arrow_left),
+          leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => Home()),
+            );
+          },
+        ),
         ),
         body: Padding(
           padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
@@ -121,14 +130,14 @@ class EntryFormState extends State<EntryForm> {
                           if (item == null) {
                     // tambah data
                             item = Item(
-                                nameController.text,
                                 kodeController.text,
+                                nameController.text,
                                 int.parse(priceController.text),
                                 int.parse(stockController.text));
                           } else {
-// ubah data
-                            item.name = nameController.text;
+                    // ubah data
                             item.kode = kodeController.text;
+                            item.name = nameController.text;
                             item.price = int.parse(priceController.text);
                             item.stock = int.parse(stockController.text);
                           }

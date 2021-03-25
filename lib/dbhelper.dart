@@ -21,8 +21,8 @@ class DbHelper {
     await db.execute('''
     CREATE TABLE item (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
     kode TEXT,
+    name TEXT,
     price INTEGER,
     stock INTEGER
     )
