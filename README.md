@@ -36,3 +36,8 @@ tampilan tambah data tugas
 tampilan hasil tugas
 <br>
 ![plot](./img/gambar5.jpeg)
+<br>
+tampilan ketika aplikasi pertama kali dibuka setelah menambah list
+<br>
+![plot](./img/gambar6.jpeg)
+<br>
