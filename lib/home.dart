@@ -14,6 +14,14 @@ class HomeState extends State<Home> {
   DbHelper dbHelper = DbHelper();
   int count = 0;
   List<Item> itemList;
+  
+  //digunakan untuk menampilkan list ketika membuka aplikasi pertama kali
+  @override
+  void initState(){
+    super.initState();
+    updateListView();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (itemList == null) {
