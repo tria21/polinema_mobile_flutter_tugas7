@@ -14,3 +14,25 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+<br>
+tugas 6 navigasi dan rute
+<br>
+tampilan awal
+<br>
+![plot](./img/gambar1.jpeg)
+<br>
+tampilan tambah data praktikum
+<br>
+![plot](./img/gambar2.jpeg)
+<br>
+tampilan hasil praktikum
+<br>
+![plot](./img/gambar3.jpeg)
+<br>
+tampilan tambah data tugas
+<br>
+![plot](./img/gambar4.jpeg)
+<br>
+tampilan hasil tugas
+<br>
+![plot](./img/gambar5.jpeg)
